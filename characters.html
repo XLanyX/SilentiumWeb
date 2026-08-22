@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Персонажи</title>
+    <style>
+        @font-face {
+            font-family: CinzelBold;
+            src: url("assets/fonts/cinzel_bold.ttf") format("truetype");
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'LJK-Elysium';
+            src: url("assets/fonts/ljk_elysium_std_medium.ttf") format("truetype");
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg: #340c4b;
+            --accent: #e3a88a;
+            --title: #eedaa5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            background-color: var(--bg);
+        }
+
+        body {
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            background-color: var(--bg);
+            color: var(--accent);
+        }
+
+        #page-bg {
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg) url("assets/images/backgrounds/main.png") center center / cover no-repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #stars img {
+            position: absolute;
+            display: block;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        #title {
+            position: absolute;
+            left: 50%;
+            top: calc(3vh + 10px);
+            transform: translateX(-50%);
+            display: flex;
+            white-space: nowrap;
+            font-family: CinzelBold, serif;
+            font-size: clamp(54px, 7.3vw, 153px);
+            line-height: 1;
+            color: var(--title);
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #title span {
+            display: inline-block;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        #top-left-button {
+            position: absolute;
+            top: 32px;
+            left: 32px;
+            z-index: 12;
+        }
+
+        .back-to-home-button {
+            font-family: 'LJK-Elysium', sans-serif;
+            font-size: 22px;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 16px;
+            border-radius: 18px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 62px;
+            height: 62px;
+            background: transparent;
+            opacity: 0;
+            transform: translateY(-28px);
+            transition: transform 360ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms cubic-bezier(.2,.8,.2,1), opacity 360ms ease;
+            will-change: transform, opacity;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            text-shadow: none;
+        }
+
+        .back-to-home-button.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-home-button:hover,
+        .back-to-home-button:focus {
+            transform: translateY(-4px);
+            box-shadow: none;
+            outline: 2px solid var(--accent);
+            outline-offset: 5px;
+        }
+
+        .back-to-home-button:active {
+            transform: translateY(-2px);
+        }
+
+        .back-to-home-button svg {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .back-to-home-button svg path {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .back-to-home-button svg path {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .characters-main {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            padding: calc(12vh + 40px + 46px) 32px 80px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .characters-container {
+            width: min(1360px, 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .priority-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 10px 10px 6px;
+            border-radius: 24px;
+        }
+
+        .characters-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .character-card {
+            flex: 1 1 calc((100% - 72px) / 4);
+            max-width: 300px;
+            min-width: 180px;
+            position: relative;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transform-origin: center center;
+            -webkit-tap-highlight-color: transparent;
+            opacity: 0;
+            transform: translateY(32px);
+            transition: transform 360ms cubic-bezier(.2,.8,.2,1), opacity 360ms ease;
+            will-change: transform, opacity;
+        }
+
+        .character-card.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .character-card:hover,
+        .character-card:focus {
+            transform: translateY(-4px);
+            outline: none;
+        }
+
+        .character-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .character-card .label {
+            margin-top: 10px;
+            text-align: center;
+            font-family: 'LJK-Elysium', sans-serif;
+            color: var(--accent);
+            font-size: 18px;
+            letter-spacing: 0.4px;
+        }
+
+        .characters-empty {
+            color: var(--title);
+            opacity: 0.85;
+            font-family: 'LJK-Elysium', sans-serif;
+            font-size: 18px;
+            text-align: center;
+            padding: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .character-card {
+                flex-basis: calc((100% - 20px) / 2);
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .characters-main {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .character-card {
+                flex-basis: 100%;
+                max-width: 420px;
+            }
+        }
+
+        @media (max-width: 600px) {
+          #title {
+            display: none;
+          }
+
+          .characters-main {
+            padding-top: 110px;
+          }
+        }
+    </style>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body>
+    <div id="page-bg" aria-hidden="true"></div>
+    <div id="stars"></div>
+    <div id="title" data-title="Персонажи"></div>
+    <div id="top-left-button">
+        <a class="back-to-home-button" href="index.html" role="button" aria-label="Назад на главную">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M15 18l-6-6 6-6" />
+            </svg>
+        </a>
+    </div>
+
+    <main class="characters-main">
+        <div class="characters-container" id="characters-container">
+            <div class="characters-empty">Загрузка персонажей...</div>
+        </div>
+    </main>
+        <script src="assets/js/page-effects.js"></script>
+    <script src="assets/js/characters-page.js"></script>
+</body>
+</html>

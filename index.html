@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silentium</title>
+
+    <style>
+        @font-face {
+            font-family: Silentium;
+            src: url("assets/fonts/cinzel_bold.ttf") format("truetype");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #340c4b;
+        }
+
+        body {
+            overflow: hidden;
+            position: relative;
+            background: #340c4b url("assets/images/backgrounds/main.png") center center / cover no-repeat;
+        }
+
+        #stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #stars img {
+            position: absolute;
+            display: block;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        #title {
+            position: absolute;
+            left: 50%;
+            top: calc(3vh + 10px);
+            transform: translateX(-50%);
+            display: flex;
+            white-space: nowrap;
+            font-family: Silentium, serif;
+            font-size: clamp(54px, 7.3vw, 153px);
+            line-height: 1;
+            color: #EEDAA5;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+            user-select: none;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #title span {
+            display: inline-block;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        #subtitle {
+            position: absolute;
+            left: 50%;
+            top: calc(3vh + 10px + clamp(54px, 7.3vw, 153px) + 16px);
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0;
+            font-family: Silentium, serif;
+            font-size: clamp(18px, 2.5vw, 38px);
+            line-height: 1;
+            color: #EEDAA5;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+            user-select: none;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 1;
+        }
+
+        #subtitle span {
+            display: inline-block;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+
+        @font-face {
+          font-family: 'LJK-Elysium';
+          src: url('assets/fonts/ljk_elysium_std_medium.ttf') format('truetype');
+          font-weight: 500;
+          font-style: normal;
+          font-display: swap;
+        }
+
+
+        #left-hero {
+          --button-scale: 1.15;
+
+          --button-h: calc(62px * var(--button-scale));
+          position: absolute;
+          left: 48px;
+          top: calc(48px + 2.3 * var(--button-h));
+          transform: none;
+          z-index: 12;
+          pointer-events: auto;
+          display: flex;
+          flex-direction: column;
+          gap: calc(12px + 0.45 * var(--button-h));
+          align-items: flex-start;
+        }
+
+
+        .discord-button,
+        .characters-page-button,
+        .trailer-button {
+          --button-scale: 1.15;
+          font-family: 'LJK-Elysium', sans-serif;
+          font-size: calc(34px * var(--button-scale));
+          color: #e3a88a;
+          border: 2px solid #e3a88a;
+          padding: calc(12px * var(--button-scale)) calc(28px * var(--button-scale));
+          border-radius: 999px;
+          text-decoration: none;
+          display: inline-block;
+          background: transparent;
+          transition: transform 360ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms cubic-bezier(.2,.8,.2,1), opacity 360ms ease;
+          will-change: transform, opacity;
+          -webkit-tap-highlight-color: transparent;
+          cursor: pointer;
+          align-self: flex-start;
+          opacity: 0;
+          transform: translateX(-60px) scale(var(--button-scale));
+          text-shadow: none;
+        }
+
+        .discord-button.in,
+        .characters-page-button.in,
+        .trailer-button.in {
+          opacity: 1;
+          transform: translateX(0) scale(var(--button-scale));
+        }
+
+        .discord-button:hover,
+        .discord-button:focus,
+        .characters-page-button:hover,
+        .characters-page-button:focus,
+        .trailer-button:hover,
+        .trailer-button:focus {
+          transform: translateX(0) translateY(-6px) scale(var(--button-scale));
+          box-shadow: none;
+          outline: 2px solid #e3a88a;
+          outline-offset: 5px;
+        }
+
+        .discord-button:active,
+        .characters-page-button:active,
+        .trailer-button:active {
+          transform: translateX(0) translateY(-2px) scale(var(--button-scale));
+        }
+
+
+        .discord-button + .characters-page-button,
+        .characters-page-button + .trailer-button {
+          margin-top: calc(-0.1 * var(--button-h));
+        }
+
+
+        @media (max-width: 420px) {
+          .discord-button,
+        .characters-page-button,
+        .trailer-button { font-size: 20px; padding: 10px 18px; border-width: 2px; }
+          #left-hero { left: 16px; }
+        }
+        .donate-container {
+          position: fixed;
+          right: 24px;
+          bottom: 24px;
+          z-index: 60;
+          pointer-events: auto;
+          width: auto;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: translateY(40px);
+          opacity: 0;
+          transition: transform 700ms cubic-bezier(.2,.8,.2,1), opacity 700ms ease;
+        }
+
+        .donate-container.in {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        .donate-link {
+          display: inline-block;
+          width: 332.5px;
+          height: auto;
+          aspect-ratio: 1235 / 1874;
+          border-radius: 95px;
+          overflow: visible;
+          -webkit-tap-highlight-color: transparent;
+          cursor: pointer;
+        }
+
+        .donate-link img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          will-change: transform, filter;
+          transform-origin: 50% 50%;
+          transition: transform 180ms cubic-bezier(.2,.8,.2,1), filter 180ms ease;
+          cursor: pointer;
+          user-select: none;
+          pointer-events: auto;
+        }
+
+        .donate-modal {
+          position: fixed;
+          inset: 0;
+          z-index: 200;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 32px;
+          background: rgba(10, 4, 16, 0.2);
+          backdrop-filter: blur(9px);
+          -webkit-backdrop-filter: blur(9px);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transition: opacity 220ms ease, visibility 220ms ease;
+        }
+
+        .donate-modal.open {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+
+        .donate-modal__options {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 28px;
+          width: min(760px, 100%);
+          transform: translateY(22px) scale(0.96);
+          opacity: 0;
+          transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 240ms ease;
+        }
+
+        .donate-modal.open .donate-modal__options {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+
+        .donate-option {
+          --button-scale: 1;
+          width: min(620px, 82vw);
+          min-height: 190px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 26px 46px;
+          border: 2px solid #e3a88a;
+          border-radius: 999px;
+          background: transparent;
+          text-decoration: none;
+          -webkit-tap-highlight-color: transparent;
+          cursor: pointer;
+          transform: translateY(0) scale(var(--button-scale));
+          transition: transform 360ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms cubic-bezier(.2,.8,.2,1), opacity 360ms ease;
+          will-change: transform, opacity;
+          outline: none;
+        }
+
+        .donate-option:hover,
+        .donate-option:focus-visible {
+          transform: translateY(-6px) scale(var(--button-scale));
+          box-shadow: none;
+          outline: 2px solid #e3a88a;
+          outline-offset: 5px;
+        }
+
+        .donate-option:active {
+          transform: translateY(-2px) scale(var(--button-scale));
+        }
+
+        .donate-option img {
+          display: block;
+          width: auto;
+          max-width: 100%;
+          height: 120px;
+          object-fit: contain;
+          user-select: none;
+          pointer-events: none;
+        }
+
+        .donate-modal__close {
+          position: fixed;
+          top: 28px;
+          right: 28px;
+          width: 58px;
+          height: 58px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          border: 2px solid #e3a88a;
+          border-radius: 999px;
+          background: transparent;
+          color: #e3a88a;
+          font-family: 'LJK-Elysium', sans-serif;
+          font-size: 34px;
+          line-height: 1;
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          transition: transform 360ms cubic-bezier(.2,.8,.2,1), outline 220ms ease;
+          outline: none;
+        }
+
+        .donate-modal__close:hover,
+        .donate-modal__close:focus-visible {
+          transform: translateY(-4px);
+          outline: 2px solid #e3a88a;
+          outline-offset: 5px;
+        }
+
+        .donate-modal__close:active {
+          transform: translateY(-1px);
+        }
+
+        body.donate-modal-open {
+          overflow: hidden;
+        }
+
+
+        @media (max-width: 600px) {
+          #left-hero {
+            left: 50%;
+            top: 41%;
+            transform: translate(-50%, -50%);
+            align-items: center;
+            width: max-content;
+          }
+
+          .discord-button,
+          .characters-page-button,
+          .trailer-button {
+            align-self: center;
+          }
+
+          .donate-container {
+            right: auto;
+            left: 50%;
+            top: 67%;
+            bottom: auto;
+            transform: translate(-50%, 40px);
+          }
+
+          .donate-container.in {
+            transform: translate(-50%, 0);
+          }
+
+          .donate-link {
+            width: 150px;
+            height: auto;
+            aspect-ratio: 1235 / 1874;
+          }
+
+          .donate-modal {
+            padding: 20px;
+          }
+
+          .donate-modal__options {
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          .donate-option {
+            width: min(620px, 88vw);
+            min-height: 130px;
+            padding: 18px 28px;
+          }
+
+          .donate-option img {
+            max-width: 100%;
+            height: 80px;
+          }
+
+          .donate-modal__close {
+            top: 16px;
+            right: 16px;
+            width: 52px;
+            height: 52px;
+            font-size: 30px;
+          }
+        }
+
+    </style>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body>
+    <div id="stars"></div>
+    <div id="title" data-title="Silentium"></div>
+    <div id="subtitle" data-subtitle="Season I"></div>
+
+    <div id="left-hero">
+        <a class="discord-button" href="https://discord.gg/mjNw5VQeVx" role="button" target="_blank" rel="noopener"><span style="display:inline-block;width:28px;height:28px;margin-right:12px;filter:drop-shadow(2px 2px 3px rgba(0,0,0,0.4));"><svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet"><defs><mask id="m-discord"><image href="assets/images/social_media_icons/discord.png" width="28" height="28" preserveAspectRatio="xMidYMid meet"/></mask></defs><rect width="28" height="28" fill="#E3A88A" mask="url(#m-discord)"/></svg></span>Discord</a>
+        <a class="characters-page-button" href="characters.html" role="button">Персонажи</a>
+        <a class="trailer-button" href="https://youtu.be/uyfssBKji4A" role="button" target="_blank" rel="noopener">Трейлер</a>
+    </div>
+    <div class="donate-container" aria-hidden="false">
+      <a class="donate-link" href="#donate" aria-label="Открыть варианты доната">
+        <img src="assets/images/donate/def.png" alt="Donate">
+      </a>
+    </div>
+
+    <div class="donate-modal" id="donate-modal" aria-hidden="true">
+      <button class="donate-modal__close" type="button" aria-label="Закрыть окно донатов">×</button>
+
+      <div class="donate-modal__options" role="dialog" aria-modal="true" aria-label="Выберите способ доната">
+        <a class="donate-option" href="https://www.donationalerts.com/r/lany_x" target="_blank" rel="noopener noreferrer" aria-label="DonationAlerts">
+          <img src="assets/images/donate/donationalerts.png" alt="DonationAlerts">
+        </a>
+        <a class="donate-option" href="https://boosty.to/x_lany_x" target="_blank" rel="noopener noreferrer" aria-label="Boosty">
+          <img src="assets/images/donate/boosty.png" alt="Boosty">
+        </a>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      const container = document.querySelector('.donate-container');
+      const link = container?.querySelector('.donate-link');
+      const img = link?.querySelector('img');
+      const modal = document.querySelector('#donate-modal');
+      const closeButton = modal?.querySelector('.donate-modal__close');
+      if(!container || !link || !img || !modal || !closeButton) return;
+
+      const cacheBust = Date.now();
+      const srcDef = `assets/images/donate/def.png?v=${cacheBust}`;
+      const srcHover = `assets/images/donate/hover.png?v=${cacheBust}`;
+
+      window.addEventListener('load', ()=>{
+        requestAnimationFrame(()=> container.classList.add('in'));
+      });
+
+      let anchorY = 0;
+      let anchorTargetY = 0;
+      const HOVER_ANCHOR_LIFT = 28;
+
+      link.addEventListener('mouseenter', ()=>{
+        link.classList.add('hover');
+        anchorTargetY = HOVER_ANCHOR_LIFT;
+        if(img.dataset.hovering !== '1'){
+          img.dataset.hovering = '1';
+          img.src = srcHover;
+        }
+      });
+      link.addEventListener('mouseleave', ()=>{
+        link.classList.remove('hover');
+        anchorTargetY = 0;
+        img.dataset.hovering = '0';
+        img.src = srcDef;
+      });
+
+      link.addEventListener('focus', ()=>{
+        link.classList.add('hover');
+        anchorTargetY = HOVER_ANCHOR_LIFT;
+      });
+      link.addEventListener('blur', ()=>{
+        link.classList.remove('hover');
+        anchorTargetY = 0;
+      });
+
+      let t = 0;
+      const baseAmpX = 6;
+      const baseAmpY = 6;
+      const speedX = 0.7;
+      const speedY = 0.7;
+
+      function animate(){
+        t += 0.016;
+
+        anchorY += (anchorTargetY - anchorY) * 0.12;
+
+        const ampX = baseAmpX * (link.classList.contains('hover') ? 1.5 : 1);
+        const ampY = baseAmpY * (link.classList.contains('hover') ? 1.5 : 1);
+        let x = Math.sin(t * speedX) * ampX;
+        let y = Math.sin(t * speedY + 1.5) * ampY;
+
+        const rect = container.getBoundingClientRect();
+        const maxLeft = -rect.left + 2;
+        const maxRight = window.innerWidth - rect.right - 2;
+        if (x < maxLeft) x = maxLeft;
+        if (x > maxRight) x = maxRight;
+        const maxUp = -rect.top + 2;
+        const maxDown = window.innerHeight - rect.bottom - 2;
+        if (y < maxUp) y = maxUp;
+        if (y > maxDown) y = maxDown;
+
+        const scale = link.classList.contains('hover') ? 1.08 : 1;
+        img.style.transform = `translate(${x}px, ${-y - anchorY}px) scale(${scale})`;
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+
+      function openDonateModal(){
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('donate-modal-open');
+        closeButton.focus();
+      }
+
+      function closeDonateModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('donate-modal-open');
+        link.focus({ preventScroll: true });
+      }
+
+      link.addEventListener('click', (event)=>{
+        event.preventDefault();
+        openDonateModal();
+      });
+
+      closeButton.addEventListener('click', closeDonateModal);
+
+      modal.addEventListener('click', (event)=>{
+        if(event.target === modal) closeDonateModal();
+      });
+
+      document.addEventListener('keydown', (event)=>{
+        if(event.key === 'Escape' && modal.classList.contains('open')){
+          closeDonateModal();
+        }
+      });
+    })();
+    </script>
+
+    <script src="assets/js/page-effects.js"></script>
+</body>
+</html>

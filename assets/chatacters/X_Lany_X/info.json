@@ -1,0 +1,26 @@
+{
+  "nickname": "X_Lany_X",
+  "uuid": "8978011c-ed91-451e-b183-d417b381b9cb",
+  "status": "Основатель",
+  "description": "???",
+  "card_author": "N3SQUI",
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@x_lany_x"
+    },
+    "Discord": {
+      "name": "Discord",
+      "icon": "discord",
+      "link": "https://discord.com/users/832934806941466634"
+    },
+    "TikTok": {
+      "name": "TikTok",
+      "icon": "tiktok",
+      "link": "https://www.tiktok.com/@x_lany_x.off"
+    }
+  },
+  "online": true,
+  "priority": 1
+}

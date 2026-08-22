@@ -1,0 +1,26 @@
+{
+  "nickname": "N3SQUI",
+  "uuid": "4ce5c238-4ef9-402a-ace9-97927fb9e875",
+  "status": "Игрок",
+  "description": "По-потом напишу",
+  "card_author": "SodiJ",
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@1n3squi"
+    },
+    "Twitch": {
+      "name": "Twitch",
+      "icon": "twitch",
+      "link": "https://www.twitch.tv/n3squii"
+    },
+    "Telegram": {
+      "name": "Telegram Channel",
+      "icon": "tg",
+      "link": "https://t.me/NESQUIIINOOO"
+    }
+  },
+  "online": true,
+  "priority": 2
+}

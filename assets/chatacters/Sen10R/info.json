@@ -1,0 +1,26 @@
+{
+  "nickname": "Sen10R",
+  "uuid": "681557e1-ae01-4019-967d-e56fce75fb0d",
+  "status": "Игрок",
+  "description": "Раньше был енотом но теперь норм чел, веду твич и буду делать видосы, люблю всех подписчиков.",
+  "card_author": "N3SQUI",
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@Snr_ENoT"
+    },
+    "Twitch": {
+      "name": "Twitch",
+      "icon": "twitch",
+      "link": "https://www.twitch.tv/snr_enot"
+    },
+    "Telegram": {
+      "name": "Telegram Channel",
+      "icon": "tg",
+      "link": "https://t.me/LECOK_ENOTA"
+    }
+  },
+  "online": true,
+  "priority": 2
+}
