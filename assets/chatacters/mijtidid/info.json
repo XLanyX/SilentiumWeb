@@ -1,0 +1,21 @@
+{
+  "nickname": "mijtidid",
+  "status": "Игрок",
+  "description": "Я еще не придумал. Можно позже поставить или обязательно с сылками?",
+  "card_author": "lopata4242",
+  "card_shadow": true,
+  "social_media": {
+    "Telegram": {
+      "name": "Telegram Channel",
+      "icon": "tg",
+      "link": "https://t.me/JustMijtidid"
+    },
+    "TikTok": {
+      "name": "TikTok",
+      "icon": "tiktok",
+      "link": "https://www.tiktok.com/@justmijtidid"
+    }
+  },
+  "online": false,
+  "priority": 2
+}

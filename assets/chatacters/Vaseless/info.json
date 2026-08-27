@@ -1,0 +1,27 @@
+{
+  "nickname": "Vaseless",
+  "uuid": "04e33491-5f47-4be8-b71c-ae73c3c8ef12",
+  "status": "Игрок",
+  "description": "Чиловый, Шизанутый бро путешествующий по мирам со своим робо-помощником Берти, ищущий приключений на свою 5-ю точку.",
+  "card_author": "lopata4242",
+  "card_shadow": true,
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@vaseless"
+    },
+    "Twitch": {
+      "name": "Twitch",
+      "icon": "twitch",
+      "link": "https://www.twitch.tv/vaseless"
+    },
+    "Telegram": {
+      "name": "Telegram Channel",
+      "icon": "tg",
+      "link": "https://t.me/barrel_multiverse"
+    }
+  },
+  "online": true,
+  "priority": 2
+}
