@@ -1,0 +1,22 @@
+{
+  "nickname": "SodiJ",
+  "uuid": "16dbb072-eb6b-4ea6-b6f3-765aa3cb7141",
+  "status": "Игрок",
+  "description": "ножницы",
+  "card_author": "N3SQUI",
+  "card_shadow": true,
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@sodi-j "
+    },
+    "Telegram": {
+      "name": "Telegram Channel",
+      "icon": "tg",
+      "link": "https://t.me/Sodije"
+    }
+  },
+  "online": true,
+  "priority": 2
+}
