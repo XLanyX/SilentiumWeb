@@ -1,0 +1,22 @@
+{
+  "nickname": "MegaPiska",
+  "uuid": "9ee3ea6e-13c0-4310-8b9b-4292a6b23c81",
+  "status": "Игрок",
+  "description": "Я ВАШ БОГ, ЖАЛКИЕ ВЫ СМЕРТНЫЕ! КОЛЬ МОЙ ВЗГЛЯД НА ХОЛОДНЫЕ ЖАЛКИЕ РУКИ, МОЛИТЕСЬ ЧТОБЫ Я НЕ ОТГРЫЗ ВАМ ЕБАЛО! И ЕСЛИ ВЫ СКАЖЕТЕ ХОТЬ КАКОЕ-ТО ПЛОХОЕ СЛОВО В МОЮ СТОРОНУ, прошу не грубо... uwu",
+  "card_author": "N3SQUI",
+  "card_shadow": true,
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@MegaP15ka"
+    },
+    "Twitch": {
+      "name": "Twitch",
+      "icon": "twitch",
+      "link": "https://www.twitch.tv/megap5hika"
+    }
+  },
+  "online": true,
+  "priority": 2
+}

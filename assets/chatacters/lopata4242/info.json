@@ -1,0 +1,22 @@
+{
+  "nickname": "lopata4242",
+  "uuid": "745638dc-6906-48fb-946e-b6cd30a0d05e",
+  "status": "Игрок",
+  "description": "Пользователь не выбрал описание.",
+  "card_author": "SodiJ",
+  "card_shadow": true,
+  "social_media": {
+    "Twitch": {
+      "name": "Twitch",
+      "icon": "twitch",
+      "link": "https://www.twitch.tv/lopata_3466"
+    },
+    "Telegram": {
+      "name": "Telegram Channel",
+      "icon": "tg",
+      "link": "https://t.me/looata90499494"
+    }
+  },
+  "online": true,
+  "priority": 2
+}
