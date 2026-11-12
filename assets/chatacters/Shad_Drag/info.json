@@ -1,0 +1,27 @@
+{
+  "nickname": "Shad_Drag",
+  "uuid": "e68a8df3-61fa-4d45-8af1-258896273fe8",
+  "status": "Игрок",
+  "description": "Бля, где я?",
+  "card_author": "Shad_Drag",
+  "card_shadow": true,
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@Shad_Drag"
+    },
+    "Twitch": {
+      "name": "Twitch",
+      "icon": "twitch",
+      "link": "https://m.twitch.tv/shad__drag"
+    },
+    "TikTok": {
+      "name": "TikTok",
+      "icon": "tiktok",
+      "link": "https://www.tiktok.com/@shad_drag"
+    }
+  },
+  "online": true,
+  "priority": 2
+}
