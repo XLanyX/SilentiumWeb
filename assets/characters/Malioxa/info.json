@@ -1,0 +1,17 @@
+{
+  "nickname": "Malioxa",
+  "uuid": "a2ff81e5-ab51-4bd1-9806-1c2fcdd92586",
+  "status": "Игрок",
+  "description": "Пользователь не выбрал описание.",
+  "card_author": "SodiJ",
+  "card_shadow": true,
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@malioxa"
+    }
+  },
+  "online": true,
+  "priority": 2
+}
