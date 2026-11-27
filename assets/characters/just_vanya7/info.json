@@ -1,0 +1,27 @@
+{
+  "nickname": "just_vanya7",
+  "uuid": "8405a2aa-9a5d-409b-af8f-ccc31176a734",
+  "status": "Игрок",
+  "description": "Некая водность которая водянит водной водянкой по водным водам при воде об воду и другие водные воды",
+  "card_author": "X_Lany_X",
+  "card_shadow": true,
+  "social_media": {
+    "YouTube": {
+      "name": "YouTube",
+      "icon": "youtube",
+      "link": "https://www.youtube.com/@just_vanya7-xyi"
+    },
+    "Twitch": {
+      "name": "Twitch",
+      "icon": "twitch",
+      "link": "https://www.twitch.tv/just_vanya7"
+    },
+    "Telegram": {
+      "name": "Telegram Channel",
+      "icon": "tg",
+      "link": "https://t.me/waterVODA1912"
+    }
+  },
+  "online": true,
+  "priority": 2
+}
